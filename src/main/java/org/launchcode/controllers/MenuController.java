@@ -62,7 +62,8 @@ public class MenuController {
     public String viewMenu(Model model, @PathVariable int menuId) {
 
         Menu menu = menuDao.findOne(menuId);
-        model.addAttribute("menu", menu);
+        model.addAttribute("menuId", menu.getId());
+        model.addAttribute("cheeses", menu.getCheeses());
         model.addAttribute("title", menu.getName());
         return "menu/view";
 
@@ -97,7 +98,7 @@ public class MenuController {
         menuDao.save(theMenu);
 
 
-        return "redirect:/menu/view" + theMenu.getId();
+        return "redirect:/menu/view/" + theMenu.getId();
 
 
     }
